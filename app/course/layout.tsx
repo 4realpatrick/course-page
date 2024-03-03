@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils";
 import { bookFont } from "@/lib/font";
 
 const CourseLayout = ({ children }: { children: React.ReactNode }) => {
