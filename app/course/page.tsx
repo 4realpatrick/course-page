@@ -38,7 +38,7 @@ const Switcher = ({
     </div>
   );
 };
-const CoursePage = ({ cardCount = 4 }: { cardCount: number }) => {
+const CoursePage = () => {
   const [mounted, setMounted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<ElementRef<"div">>(null);
@@ -47,7 +47,7 @@ const CoursePage = ({ cardCount = 4 }: { cardCount: number }) => {
       if (orientation === "left") {
         return currentIndex > 0;
       } else {
-        return currentIndex < cardCount - 3;
+        return currentIndex < 4 - 3;
       }
     },
     [currentIndex]
