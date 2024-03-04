@@ -1,4 +1,5 @@
 "use client";
+import useMediaQuery from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 import {
   useEffect,
@@ -42,15 +43,16 @@ const CoursePage = () => {
   const [mounted, setMounted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<ElementRef<"div">>(null);
+  const isMobile = useMediaQuery();
   const canSwitch = useCallback(
     (orientation: "left" | "right") => {
       if (orientation === "left") {
         return currentIndex > 0;
       } else {
-        return currentIndex < 4 - 3;
+        return currentIndex < 4 - (isMobile ? 1 : 3);
       }
     },
-    [currentIndex]
+    [currentIndex, isMobile]
   );
   const cards = useMemo(() => {
     return [...new Array(4)].map((_, i) => {
@@ -64,9 +66,10 @@ const CoursePage = () => {
   }, []);
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
+
   return (
     <div className="h-[inherit] flex items-center justify-center overflow-hidden">
-      <div className="w-4/5 overflow-hidden relative">
+      <div className="w-full overflow-hidden relative lg:min-w-[1000px] lg:w-4/5">
         {canSwitch("left") && (
           <Switcher
             orientation="left"
@@ -74,9 +77,13 @@ const CoursePage = () => {
           />
         )}
         <div
-          className="relative flex gap-[5%] px-8 py-4 transition-transform"
+          className={cn(
+            "relative flex gap-[5%] px-8 py-4 transition-transform"
+          )}
           ref={containerRef}
-          style={{ transform: `translateX(-${currentIndex * 35}%)` }}
+          style={{
+            transform: `translateX(-${currentIndex * (isMobile ? 95 : 35)}%)`,
+          }}
         >
           {cards}
         </div>

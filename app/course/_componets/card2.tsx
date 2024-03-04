@@ -1,9 +1,15 @@
 import Tag from "@/components/tag";
+import useMediaQuery from "@/hooks/use-media-query";
+import { cn } from "@/lib/utils";
 
 const Card2 = () => {
+  const isMobile = useMediaQuery();
   return (
     <div
-      className="flex flex-col justify-between px-10 py-9 bg-neutral-800 space-y-4 rounded-2xl w-[30%] hover:translate-x-2 hover:-translate-y-2 transition-transform translate-x-0 translate-y-0 after:absolute after:inset-0 after:translate-z-[-4px,_4px,_-1px] after:bg-gradient-to-b after:from-blue-500 after:to-red-500 after:rounded-2xl after:transition-all after:opacity-0 hover:after:opacity-100 after:z-[3] shrink-0"
+      className={cn(
+        "flex flex-col justify-between px-10 py-9 bg-neutral-800 space-y-4 rounded-2xl w-full hover:translate-x-2 hover:-translate-y-2 transition-transform translate-x-0 translate-y-0 after:absolute after:inset-0 after:translate-z-[-4px,_4px,_-1px] after:bg-gradient-to-b after:from-blue-500 after:to-red-500 after:rounded-2xl after:transition-all after:opacity-0 hover:after:opacity-100 after:z-[3] shrink-0",
+        isMobile ? "w-full" : "w-[30%]"
+      )}
       style={{ transformStyle: "preserve-3d" }}
     >
       <div className="space-y-6">

@@ -1,11 +1,17 @@
 import Tag from "@/components/tag";
+import useMediaQuery from "@/hooks/use-media-query";
+import { cn } from "@/lib/utils";
 import { CiClock2 } from "react-icons/ci";
 import { MdOutlineMenuBook } from "react-icons/md";
 
 const Card3 = () => {
+  const isMobile = useMediaQuery();
   return (
     <div
-      className="relative bg-neutral-800 rounded-2xl w-[30%] hover:translate-x-2 hover:-translate-y-2 transition-transform translate-x-0 translate-y-0 before:absolute before:top-[25px] before:right-0 before:bg-neutral-800 before:size-[15px] before:rounded-tr-2xl before:shadow-[2px_-5px_0_2px_rgb(10_10_10)] after:absolute after:inset-0 after:translate-z-[-4px,_4px,_-1px] after:bg-gradient-to-b after:from-amber-500  after:to-purple-500 after:rounded-2xl after:transition-all after:opacity-0 hover:after:opacity-100 after:z-[3] shrink-0"
+      className={cn(
+        "relative bg-neutral-800 rounded-2xl w-full hover:translate-x-2 hover:-translate-y-2 transition-transform translate-x-0 translate-y-0 before:absolute before:top-[25px] before:right-0 before:bg-neutral-800 before:size-[15px] before:rounded-tr-2xl before:shadow-[2px_-5px_0_2px_rgb(10_10_10)] after:absolute after:inset-0 after:translate-z-[-4px,_4px,_-1px] after:bg-gradient-to-b after:from-amber-500  after:to-purple-500 after:rounded-2xl after:transition-all after:opacity-0 hover:after:opacity-100 after:z-[3] shrink-0",
+        isMobile ? "w-full" : "w-[30%]"
+      )}
       style={{ transformStyle: "preserve-3d" }}
     >
       <div
